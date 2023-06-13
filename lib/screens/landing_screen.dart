@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
 import 'package:shyp/constants/textstyles.dart';
+import 'package:shyp/screens/orders_screen.dart';
+import 'package:shyp/services/navigation_helper.dart';
 import 'package:shyp/widgets/custom_button.dart';
 
-class LandingScreen extends StatelessWidget {
+class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
+
+  @override
+  State<LandingScreen> createState() => _LandingScreenState();
+}
+
+class _LandingScreenState extends State<LandingScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +56,9 @@ class LandingScreen extends StatelessWidget {
                 color: Colors.white,
                 radius: 24.0,
                 textColor: ApplicationColors.primaryColor,
-                onTap: () {},
+                onTap: () {
+                  NavigationHelper().push(context, const OrdersScreen());
+                },
               ),
             ],
           ),

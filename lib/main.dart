@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shyp/constants/colors.dart';
 import 'package:shyp/constants/textstyles.dart';
@@ -21,6 +22,12 @@ class MyApp extends StatelessWidget {
           iconTheme: const IconThemeData(color: ApplicationColors.primaryColor),
           colorScheme:
               const ColorScheme.light(primary: ApplicationColors.primaryColor),
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.light,
+            ),
+          ),
           primaryColor: ApplicationColors.primaryColor,
           primarySwatch: Colors.red,
           scaffoldBackgroundColor: ApplicationColors.scaffoldColor,
