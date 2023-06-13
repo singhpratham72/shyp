@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
+import 'package:shyp/constants/data.dart';
 import 'package:shyp/constants/textstyles.dart';
+import 'package:shyp/models/order_model.dart';
+import 'package:shyp/screens/landing_screen.dart';
+import 'package:shyp/services/navigation_helper.dart';
 import 'package:shyp/widgets/custom_button.dart';
 
 class ConfirmBookingBottomSheet extends StatefulWidget {
@@ -15,6 +19,7 @@ class ConfirmBookingBottomSheet extends StatefulWidget {
 
 class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
   bool next = false;
+  Order order = Data.order;
   @override
   Widget build(BuildContext context) {
     if (!next) {
@@ -60,7 +65,7 @@ class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Balaji Cements'),
+                  Text(order.consigner ?? ''),
                   Row(
                     children: const [
                       Icon(Icons.close),
@@ -74,10 +79,10 @@ class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                children: const [
-                  Icon(Icons.location_on_outlined),
-                  SizedBox(width: 4.0),
-                  Text('Durgapur, West Bengal'),
+                children: [
+                  const Icon(Icons.location_on_outlined),
+                  const SizedBox(width: 4.0),
+                  Text(order.pickupLocation ?? ''),
                 ],
               ),
             ),
@@ -151,7 +156,7 @@ class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Krishna Pvt Ltd.'),
+                  Text(order.consignee ?? ''),
                   Row(
                     children: const [
                       Icon(Icons.close),
@@ -165,10 +170,10 @@ class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                children: const [
-                  Icon(Icons.location_on_outlined),
-                  SizedBox(width: 4.0),
-                  Text('Pathsala, West Bengal'),
+                children: [
+                  const Icon(Icons.location_on_outlined),
+                  const SizedBox(width: 4.0),
+                  Text(order.dropLocation ?? ''),
                 ],
               ),
             ),
@@ -206,7 +211,8 @@ class _ConfirmBookingBottomSheetState extends State<ConfirmBookingBottomSheet> {
                           label: 'Next',
                           radius: 16.0,
                           onTap: () {
-                            Navigator.pop(context);
+                            NavigationHelper()
+                                .pushAndRemoveU(context, const LandingScreen());
                           },
                         ),
                       ),

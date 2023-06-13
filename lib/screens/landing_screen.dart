@@ -5,18 +5,8 @@ import 'package:shyp/screens/orders_screen.dart';
 import 'package:shyp/services/navigation_helper.dart';
 import 'package:shyp/widgets/custom_button.dart';
 
-class LandingScreen extends StatefulWidget {
+class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
-
-  @override
-  State<LandingScreen> createState() => _LandingScreenState();
-}
-
-class _LandingScreenState extends State<LandingScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

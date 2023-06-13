@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
-import 'package:shyp/constants/fonts.dart';
+import 'package:shyp/constants/data.dart';
 import 'package:shyp/constants/textstyles.dart';
+import 'package:shyp/models/order_model.dart';
 import 'package:shyp/widgets/confirm_booking_bottom_sheet.dart';
 import 'package:shyp/widgets/custom_button.dart';
+import 'package:shyp/widgets/load_status_card.dart';
 
 class TrackLoadScreen extends StatelessWidget {
   const TrackLoadScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Order order = Data.order;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -53,6 +56,7 @@ class TrackLoadScreen extends StatelessWidget {
         ),
         body: SafeArea(
           child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 16.0),
             reverse: true,
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -116,8 +120,8 @@ class TrackLoadScreen extends StatelessWidget {
                                             Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: const [
-                                                Text(
+                                              children: [
+                                                const Text(
                                                   'Pickup Location',
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -125,7 +129,7 @@ class TrackLoadScreen extends StatelessWidget {
                                                   style: TextStyles.h3,
                                                 ),
                                                 Text(
-                                                  'Durgapur, West Bengal',
+                                                  order.pickupLocation ?? '',
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
@@ -138,8 +142,8 @@ class TrackLoadScreen extends StatelessWidget {
                                             Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: const [
-                                                Text(
+                                              children: [
+                                                const Text(
                                                   'Drop Location',
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -147,7 +151,7 @@ class TrackLoadScreen extends StatelessWidget {
                                                   style: TextStyles.h3,
                                                 ),
                                                 Text(
-                                                  'Pathsala, Assam',
+                                                  order.dropLocation ?? '',
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
@@ -178,11 +182,11 @@ class TrackLoadScreen extends StatelessWidget {
                                     TextStyles.greyText.copyWith(height: 2.0),
                               ),
                             ),
-                            const Expanded(
+                            Expanded(
                               child: Text(
-                                'SHYP789XX83\n2nd Feb 2023\nOpen Half Body Truck\n25.0 Tonne\nTMT',
+                                '${order.id}\n${order.pickupDate}\n${order.preferredVehicle}\n${order.quantity}\n${order.materialType}',
                                 textAlign: TextAlign.right,
-                                style: TextStyle(height: 2.0),
+                                style: const TextStyle(height: 2.0),
                               ),
                             ),
                           ],
@@ -190,105 +194,7 @@ class TrackLoadScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(
-                        bottom: 24.0, left: 16.0, right: 16.0),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 12.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24.0),
-                      boxShadow: [
-                        BoxShadow(
-                            color: const Color(0xFF000000).withOpacity(0.1),
-                            spreadRadius: 0.0,
-                            blurRadius: 5.0,
-                            offset: const Offset(0, 2.5))
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Load Status',
-                            style: TextStyles.h2,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.check_circle),
-                              Expanded(
-                                  child: Divider(
-                                      thickness: 2.0,
-                                      color: ApplicationColors.primaryColor)),
-                              Icon(Icons.radio_button_checked),
-                              Expanded(child: Divider(thickness: 2.0)),
-                              Icon(Icons.radio_button_off,
-                                  color: ApplicationColors.grey),
-                              Expanded(child: Divider(thickness: 2.0)),
-                              Icon(Icons.radio_button_off,
-                                  color: ApplicationColors.grey),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 4.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Expanded(
-                              child: Text(
-                                'Pending',
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: FontSize.S,
-                                    color: ApplicationColors.primaryColor),
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Quoted',
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: FontSize.S,
-                                    color: ApplicationColors.primaryColor),
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Scheduled',
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: FontSize.S,
-                                    color: ApplicationColors.primaryColor),
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'In Progress',
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: FontSize.S,
-                                    color: ApplicationColors.primaryColor),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                  const LoadStatusCard(),
                   Container(
                     width: double.infinity,
                     margin: const EdgeInsets.only(
@@ -314,7 +220,7 @@ class TrackLoadScreen extends StatelessWidget {
                           style: TextStyles.h2,
                         ),
                         Text(
-                          '₹ 3000.0',
+                          order.price ?? "",
                           style: TextStyles.h1
                               .copyWith(color: ApplicationColors.primaryColor),
                         )

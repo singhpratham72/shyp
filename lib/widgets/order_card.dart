@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
+import 'package:shyp/constants/data.dart';
 import 'package:shyp/constants/fonts.dart';
 import 'package:shyp/constants/textstyles.dart';
+import 'package:shyp/models/order_model.dart';
 import 'package:shyp/screens/track_load_screen.dart';
 import 'package:shyp/services/navigation_helper.dart';
 import 'package:shyp/widgets/custom_button.dart';
@@ -13,6 +15,7 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Order order = Data.order;
     return GestureDetector(
       onTap: () {
         // Navigate to TrackLoadScreen
@@ -42,7 +45,7 @@ class OrderCard extends StatelessWidget {
                 CustomButton(
                   radius: 18.0,
                   padding: 6.0,
-                  label: 'Pending',
+                  label: order.status,
                   textSize: FontSize.xS,
                   color: ApplicationColors.primaryColorLight.withOpacity(0.1),
                   textColor: ApplicationColors.primaryColor,
@@ -80,13 +83,13 @@ class OrderCard extends StatelessWidget {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              'Durgapur, West Bengal',
+                              order.pickupLocation ?? '',
                               maxLines: 1,
                             ),
                             Text(
-                              '8th March 2023',
+                              order.pickupDate ?? '',
                               maxLines: 1,
                               style: TextStyles.greyText,
                             )
@@ -97,13 +100,13 @@ class OrderCard extends StatelessWidget {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              'Bopeta, Assam',
+                              order.dropLocation ?? '',
                               maxLines: 1,
                             ),
                             Text(
-                              'To be determined',
+                              order.dropDate ?? '',
                               maxLines: 1,
                               style: TextStyles.greyText,
                             )
@@ -116,9 +119,10 @@ class OrderCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  '30 Tonne • TMT • Open Full Body Truck',
-                  style: TextStyle(color: ApplicationColors.primaryColorLight),
+                Text(
+                  '${order.quantity} • ${order.materialType} • ${order.preferredVehicle}',
+                  style: const TextStyle(
+                      color: ApplicationColors.primaryColorLight),
                 ),
                 Container(
                     padding: const EdgeInsets.all(4.0),
