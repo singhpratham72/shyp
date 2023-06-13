@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
 import 'package:shyp/constants/fonts.dart';
 import 'package:shyp/constants/textstyles.dart';
+import 'package:shyp/widgets/confirm_booking_bottom_sheet.dart';
 import 'package:shyp/widgets/custom_button.dart';
 
 class TrackLoadScreen extends StatelessWidget {
@@ -323,14 +324,30 @@ class TrackLoadScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
-                      children: const [
+                      children: [
                         CustomButton(
                           label: 'Confirm Load Booking',
                           radius: 16.0,
+                          onTap: () {
+                            showModalBottomSheet<dynamic>(
+                                isScrollControlled: false,
+                                backgroundColor:
+                                    ApplicationColors.scaffoldColor,
+                                context: context,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                builder: (BuildContext context) {
+                                  return const ConfirmBookingBottomSheet();
+                                });
+                          },
                         ),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
                         CustomButton(
                           label: 'Cancel',
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           color: Colors.white,
                           radius: 16.0,
                           textColor: ApplicationColors.primaryColor,
