@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class FontSize {
-  static const double S = 10.0;
-  static const double M = 12.0;
-  static const double L = 14.0;
-  static const double xL = 16.0;
-  static const double xXL = 18.0;
-  static const double xXXL = 28.0;
+  static const double xS = 10.0;
+  static const double S = 12.0;
+  static const double M = 14.0;
+  static const double L = 16.0;
+  static const double xL = 18.0;
+  static const double xXL = 20.0;
+  static const double xXXL = 36.0;
 }
 
 class Weight {

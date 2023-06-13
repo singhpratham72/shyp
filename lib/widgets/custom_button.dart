@@ -1,6 +1,7 @@
 import 'package:animation_wrappers/animations/faded_scale_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:shyp/constants/colors.dart';
+import 'package:shyp/constants/textstyles.dart';
 
 class CustomButton extends StatelessWidget {
   final String? label;
@@ -32,7 +33,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return FadedScaleAnimation(
       scaleDuration: const Duration(milliseconds: 600),
       child: GestureDetector(
@@ -55,9 +55,8 @@ class CustomButton extends StatelessWidget {
               Text(
                 label ?? 'Next',
                 textAlign: TextAlign.center,
-                style: theme.textTheme.labelLarge!.copyWith(
-                    color: textColor ?? theme.scaffoldBackgroundColor,
-                    fontSize: textSize ?? 16),
+                style: TextStyles.h2.copyWith(
+                    color: textColor ?? Colors.white, fontSize: textSize ?? 16),
               ),
               trailing != null ? const Spacer() : const SizedBox.shrink(),
               trailing ?? const SizedBox.shrink(),

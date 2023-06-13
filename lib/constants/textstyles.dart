@@ -9,11 +9,11 @@ class TextStyles {
       color: ApplicationColors.black);
   static const TextStyle h2 = TextStyle(
       fontSize: FontSize.L,
-      fontWeight: Weight.heavy,
+      fontWeight: Weight.bold,
       color: ApplicationColors.black);
   static const TextStyle h3 = TextStyle(
       fontSize: FontSize.M,
-      fontWeight: Weight.bold,
+      fontWeight: Weight.heavy,
       color: ApplicationColors.primaryColor);
   static const TextStyle greyText = TextStyle(
       fontSize: FontSize.M,
